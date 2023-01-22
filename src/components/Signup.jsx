@@ -5,15 +5,23 @@ import {
     Button,
     VStack,
   } from "@chakra-ui/react";
+  import { useToast } from '@chakra-ui/react'
   import { Link } from "react-router-dom";
   import { Box,Heading } from "@chakra-ui/react";
   import { useForm } from "react-hook-form";
   
   function SignUp() {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const toast = useToast();
     const onSubmit = (data) => {
-      console.log(data);
-      
+      toast({
+        title: 'Account created Successfully',
+        status: 'success',
+        position: "top",
+        duration: 5000,
+        isClosable: true,
+      })
+     
     };
     const validatePasswordMatch = (value) => {
       return watch("password") === value || "Passwords do not match";

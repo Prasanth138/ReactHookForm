@@ -7,6 +7,7 @@ import {
   VStack,
   HStack,
 } from "@chakra-ui/react";
+import { useToast } from '@chakra-ui/react'
 import { Link } from "react-router-dom";
 import { Box,Heading } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
@@ -17,8 +18,16 @@ function Login() {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const toast = useToast()
   const onSubmit = (data) => {
-    alert(`Email : ${data.email} => Password : ${data.passsword} `);
+    toast({
+      title: 'Logged in Successfully',
+      status: 'success',
+      position: "top",
+      duration: 5000,
+      isClosable: true,
+    })
+    // alert(`Email : ${data.email} => Password : ${data.passsword} `);
   };
 
   return (
